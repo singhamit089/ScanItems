@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ItemTableViewCell: UITableViewCell, LoadableFromNib {
 
@@ -28,6 +29,12 @@ class ItemTableViewCell: UITableViewCell, LoadableFromNib {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setItemCell(item: Item) {
+        itemImageView.sd_setImage(with: URL(string: item.thumbnailUrl ?? "") , placeholderImage: UIImage(named: "barcode"), options: SDWebImageOptions(), context: nil)
+        itemNameLabel.text = item.title
+        itemPriceLabel.text = "$ \(item.price)"
     }
     
 }

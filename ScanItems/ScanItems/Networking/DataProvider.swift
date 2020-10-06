@@ -64,11 +64,4 @@ class DataProvider {
             }
         }
     }
-
-    func firstLaunchInitilizations() {
-        let previouslyLaunched = UserDefaults.standard.bool(forKey: IdentifyingKeys.firstLaunch.rawValue)
-        if !previouslyLaunched {
-            UserDefaults.standard.set(true, forKey: IdentifyingKeys.firstLaunch.rawValue)
-        }
-    }
 }
