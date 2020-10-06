@@ -113,5 +113,62 @@ class DBStorageManager {
             print(error.localizedDescription)
         }
     }
+    
+    func getCart(with item: Item) -> Cart? {
+        guard let cart: Cart = NSEntityDescription.insertNewObject(forEntityName: "Cart", into: mainContext) as? Cart else { return nil }
+
+        cart.items = item
+        cart.quantity = 1
+        cart.price = item.price
+
+        return cart
+    }
+    
+    func insertCart(with cart:Cart) {
+        
+        var predicateArray = Array<NSPredicate>()
+        
+        if let itemID = cart.items?.id {
+            let predicateItem = NSPredicate(format: "items.id == %d", itemID)
+            predicateArray.append(predicateItem)
+        }
+        
+         let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: predicateArray)
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: Cart.self))
+        fetchRequest.predicate = predicateCompound
+        //fetchRequest.sortDescriptors = [] //optionally you can specify the order in which entities should ordered after fetch finishes
+    
+        do {
+            let results = try mainContext.fetch(fetchRequest)
+            if results.count == 1 {
+                save()
+            }else {
+                
+                var cartArray = results as! [Cart]
+                
+                var totalQty = Int32(0)
+                
+                for cart in cartArray {
+                    totalQty += cart.quantity
+                }
+                
+                let firstCartObject =  cartArray.first
+                firstCartObject?.quantity = totalQty
+                firstCartObject?.price = (firstCartObject?.items?.price)! * Double(totalQty)
+                
+                cartArray.remove(at: 0)
+                
+                for cart in cartArray {
+                   remove(objectID: cart.objectID)
+                }
+                
+                save()
+            }
+        } catch {
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+    }
 }
 

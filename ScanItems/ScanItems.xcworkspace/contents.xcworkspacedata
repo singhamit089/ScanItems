@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <Group
+      location = "container:"
+      name = "Models">
+      <FileRef
+         location = "group:ScanItems/Models/Cart+CoreDataClass.swift">
+      </FileRef>
+      <FileRef
+         location = "group:ScanItems/Models/Cart+CoreDataProperties.swift">
+      </FileRef>
+      <FileRef
+         location = "group:ScanItems/Models/Item+CoreDataClass.swift">
+      </FileRef>
+      <FileRef
+         location = "group:ScanItems/Models/Item+CoreDataProperties.swift">
+      </FileRef>
+   </Group>
    <FileRef
       location = "group:ScanItems.xcodeproj">
    </FileRef>

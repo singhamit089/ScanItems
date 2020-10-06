@@ -12,6 +12,7 @@ import AVFoundation
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
+    var coordinator: BaseCoordinator<Void>!
 
     override func viewDidLoad() {
         super.viewDidLoad()

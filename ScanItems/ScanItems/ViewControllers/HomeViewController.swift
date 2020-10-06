@@ -9,6 +9,8 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    
+    var coordinator: BaseCoordinator<Void>!
     let loadingViewController = LoadingViewController()
     private var tableView = UITableView()
     var safeArea: UILayoutGuide!
