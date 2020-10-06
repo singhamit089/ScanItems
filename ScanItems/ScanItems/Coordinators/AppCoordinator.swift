@@ -17,8 +17,8 @@ class AppCoordinator: BaseCoordinator<Void> {
     }
     
     override func start() -> Observable<Void> {
-        let rootTabBarCoordinator = RootTabBarCoordinator(window: window)
-        return coordinate(to: rootTabBarCoordinator)
+        let splashViewCoordinator = SplashViewCoordinator(window: window)
+        return coordinate(to: splashViewCoordinator)
     }
 }
 

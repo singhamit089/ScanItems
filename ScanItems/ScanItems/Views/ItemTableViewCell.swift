@@ -22,7 +22,12 @@ class ItemTableViewCell: UITableViewCell, LoadableFromNib {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        // solving UI color bug in iOS 13 by setting it up manually
+        
+        itemNameLabel.textColor = .black
+        itemPriceLabel.textColor = .black
+        itemQtyLabel.textColor = .black
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

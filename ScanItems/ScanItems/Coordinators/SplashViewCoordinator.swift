@@ -19,11 +19,19 @@ class SplashViewCoordinator: BaseCoordinator<Void> {
     
     override func start() -> Observable<Void> {
         
-        let viewController = HomeViewController()
-        let navigationController = UINavigationController(rootViewController: viewController)
+        let previouslyLaunched = UserDefaults.standard.bool(forKey: IdentifyingKeys.firstLaunch.rawValue)
         
-        window.rootViewController = navigationController
-        window.makeKeyAndVisible()
+        if !previouslyLaunched {
+            let viewController = SplashViewController()
+            viewController.coordinator = self
+            let navigationController = UINavigationController(rootViewController: viewController)
+            window.rootViewController = navigationController
+            window.makeKeyAndVisible()
+        } else {
+            let rootTabBarCoordinator = RootTabBarCoordinator(window: window)
+            return coordinate(to: rootTabBarCoordinator)
+        }
+        
         
         return Observable.never()
     }

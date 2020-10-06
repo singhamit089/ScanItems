@@ -16,35 +16,21 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        add(loadingViewController)
-        
         tableView.delegate = self
         tableView.dataSource = self
-
-        // We can Also call API just once, and from next time on just load the data from CoreData
-        DataProvider.sharedInstance.getProductList { result in
-            switch result {
-            case .Success:
-                self.loadingViewController.remove()
-                self.tableView.reloadData()
-            case let .Error(error):
-                print("API Error")
-                self.loadingViewController.remove()
-
-                let errorViewController = ErrorViewController(error: error)
-                self.add(errorViewController)
-            }
-        }
+        tableView.register(UINib(nibName: "ItemTableViewCell", bundle: nil), forCellReuseIdentifier: "ItemTableViewCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         do {
             try DataProvider.sharedInstance.storageManager.fetchedhResultController.performFetch()
             print("COUNT FETCHED FIRST: \(String(describing: DataProvider.sharedInstance.storageManager.fetchedhResultController.sections?[0].numberOfObjects))")
-            self.tableView.reloadData()
+            tableView.reloadData()
         } catch let error {
             print("ERROR: \(error)")
         }
+        
     }
     
     override func loadView() {
@@ -58,15 +44,13 @@ class HomeViewController: UIViewController {
         
         view.backgroundColor = .white
         safeArea = view.layoutMarginsGuide
-        
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        
-        tableView.register(UINib(nibName: "ItemTableViewCell", bundle: nil), forCellReuseIdentifier: "ItemTableViewCell")
+        tableView.allowsSelection = false
     }
 
     override func didReceiveMemoryWarning() {
