@@ -12,6 +12,7 @@ target 'ScanItems' do
     pod 'SVProgressHUD'
     pod 'RxDataSources'
     pod 'SDWebImage'
+    pod 'SwiftIconFont'
 
   target 'ScanItemsTests' do
     inherit! :search_paths

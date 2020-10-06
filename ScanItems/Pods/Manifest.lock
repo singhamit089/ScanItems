@@ -24,6 +24,7 @@ PODS:
     - SDWebImage/Core (= 5.8.0)
   - SDWebImage/Core (5.8.0)
   - SVProgressHUD (2.2.5)
+  - SwiftIconFont (6.1.0)
 
 DEPENDENCIES:
   - Moya/RxSwift
@@ -35,6 +36,7 @@ DEPENDENCIES:
   - RxTest
   - SDWebImage
   - SVProgressHUD
+  - SwiftIconFont
 
 SPEC REPOS:
   trunk:
@@ -50,6 +52,7 @@ SPEC REPOS:
     - RxTest
     - SDWebImage
     - SVProgressHUD
+    - SwiftIconFont
 
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
@@ -64,7 +67,8 @@ SPEC CHECKSUMS:
   RxTest: 711632d5644dffbeb62c936a521b5b008a1e1faa
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftIconFont: 899a700aacafaf92adfbe3caefcb62015933ce4c
 
-PODFILE CHECKSUM: 1f88513767c149b33af22b6ddb16ef0e23c9968c
+PODFILE CHECKSUM: fa5dcdc2199dbcbfe237f8ad3f6f094937642ca0
 
 COCOAPODS: 1.9.1

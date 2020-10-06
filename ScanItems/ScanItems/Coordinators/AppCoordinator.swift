@@ -17,8 +17,8 @@ class AppCoordinator: BaseCoordinator<Void> {
     }
     
     override func start() -> Observable<Void> {
-        let homeViewCoordinator = HomeViewCoordinator(window: window)
-        return coordinate(to: homeViewCoordinator)
+        let rootTabBarCoordinator = RootTabBarCoordinator(window: window)
+        return coordinate(to: rootTabBarCoordinator)
     }
 }
 
